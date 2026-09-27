@@ -22,6 +22,7 @@
       <a href="#why"><span lang="ko">왜 좋은가</span><span lang="en">Why</span></a>
       <a href="#who"><span lang="ko">누구를 위해</span><span lang="en">Who</span></a>
       <a href="#features"><span lang="ko">기능</span><span lang="en">Features</span></a>
+      <a href="#controllers"><span lang="ko">컨트롤러</span><span lang="en">Controllers</span></a>
       <a href="#dev"><span lang="ko">개발자</span><span lang="en">Developer</span></a>
     </nav>
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -198,8 +199,8 @@
           <h3><span lang="ko">컨트롤러와 장치 선택</span><span lang="en">Controllers and devices</span></h3>
           <p><span lang="ko">PHOENIXWAN+ · FPS EMP 2세대 · 키보드를 공식 지원하고, 그 밖의 컨트롤러는 버튼을 눌러 직접 매핑합니다. 연결된 장치를 골라 쓸 수 있습니다.</span>
              <span lang="en">Official support for PHOENIXWAN+, FPS EMP Gen2 and keyboards; map any other controller by pressing its buttons. Pick from the connected devices.</span></p>
-          <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#컨트롤러-지원-범위">가이드 →</a>
-          <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#controller-support">Guide →</a>
+          <a class="more" lang="ko" href="#controllers">지원 컨트롤러 · 지원 요청 →</a>
+          <a class="more" lang="en" href="#controllers">Supported controllers · requests →</a>
         </article>
         <article class="mini">
           <img src="assets/guide.jpg" alt="" loading="lazy" />
@@ -220,9 +221,67 @@
       </div>
     </section>
 
+    <!-- ─── 지원하는 컨트롤러 ─── -->
+    <section id="controllers" class="section">
+      <h2 class="section-title"><span class="num">04</span>
+        <span lang="ko">지원하는 컨트롤러</span><span lang="en">Supported controllers</span></h2>
+      <div class="cards three support">
+        <article class="card">
+          <h3><span class="tag ok" lang="ko">공식 지원</span><span class="tag ok" lang="en">Official</span></h3>
+          <ul>
+            <li>PHOENIXWAN+ <span lang="ko">(주작콘)</span></li>
+            <li>FPS EMP <span lang="ko">2세대</span><span lang="en">Gen2</span></li>
+            <li><span lang="ko">키보드</span><span lang="en">Keyboard</span></li>
+          </ul>
+          <p><span lang="ko">프로필을 고르기만 하면 바로 동작합니다. 주작콘·FPS는 LR2 모드도 알아서 감지합니다.</span>
+             <span lang="en">Pick the profile and it just works. PHOENIXWAN+ and FPS also detect LR2 mode.</span></p>
+        </article>
+        <article class="card">
+          <h3><span class="tag manual" lang="ko">수동 매핑 · 보장 안 함</span><span class="tag manual" lang="en">Manual mapping · not guaranteed</span></h3>
+          <ul>
+            <li><span lang="ko">그 밖의 IIDX 컨트롤러 (게임패드 모드)</span><span lang="en">Other IIDX controllers (gamepad mode)</span></li>
+            <li><span lang="ko">아두이노 등 자작 기판</span><span lang="en">DIY boards (Arduino, …)</span></li>
+            <li><span lang="ko">PS2 컨트롤러 + USB 변환기</span><span lang="en">PS2 controllers via USB adapter</span></li>
+          </ul>
+          <p><span lang="ko">'기타 컨트롤러 (수동 매핑)' 프로필에서 버튼을 눌러 직접 매핑합니다.</span>
+             <span lang="en">Map each button yourself with the 'Other controller (manual mapping)' profile.</span></p>
+        </article>
+        <article class="card">
+          <h3><span class="tag check" lang="ko">확인된 기타 컨트롤러</span><span class="tag check" lang="en">Confirmed others</span></h3>
+          <p><span lang="ko">아직 없습니다. 수동 매핑으로 써 보셨다면 결과를 알려주세요.</span>
+             <span lang="en">None yet. If you've used one with manual mapping, let us know how it went.</span></p>
+          <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#컨트롤러-지원-범위">지원 범위 자세히 →</a>
+          <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#controller-support">Support details →</a>
+        </article>
+      </div>
+
+      <div class="request">
+        <div>
+          <h3><span lang="ko">내 컨트롤러도 공식 지원해 주세요</span><span lang="en">Request official support</span></h3>
+          <p><span lang="ko">컨트롤러가 보내는 신호를 기록해서 보내주시면, 그걸로 전용 프로필을 만듭니다. 앱 안에서 몇 분이면 됩니다.</span>
+             <span lang="en">Record what your controller sends and share it — that's what we build a dedicated profile from. It takes a few minutes inside the app.</span></p>
+          <ol class="request-steps">
+            <li><span lang="ko">IIDXwidget의 메뉴 → <b>컨트롤러 정보 수집</b>을 열고, 안내대로 버튼을 누르고 스크래치를 돌리며 녹화합니다.</span>
+                <span lang="en">In IIDXwidget, open Menu → <b>Controller probe</b> and record while pressing buttons and turning the turntable as it asks.</span></li>
+            <li><span lang="ko"><b>결과 파일 저장</b>으로 JSON 파일을 저장합니다.</span>
+                <span lang="en">Press <b>Save result file</b> to save a JSON file.</span></li>
+            <li><span lang="ko">GitHub의 <b>컨트롤러 지원 요청</b> 이슈 양식을 열고, '수집 파일' 칸에 JSON 파일을 끌어다 놓아 첨부한 뒤 등록합니다.</span>
+                <span lang="en">Open the <b>controller support request</b> issue form on GitHub, drag the JSON file into the 'Probe file' box, and submit.</span></li>
+          </ol>
+          <p class="fine"><span lang="ko">GitHub 계정이 필요합니다. 파일이 25MB를 넘으면 ZIP으로 압축해 주세요. 요청이 곧 공식 지원을 보장하지는 않고, 실물 확인이 필요할 수 있습니다.</span>
+             <span lang="en">A GitHub account is required. Zip the file if it's over 25MB. A request doesn't guarantee support, and we may need to test the hardware.</span></p>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/Coldlapse/IIDXwidget/issues/new?template=controller-support.yml"><span lang="ko">지원 요청 이슈 쓰기 ↗</span><span lang="en">Open a request issue ↗</span></a>
+          <a class="btn ghost" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#공식-지원-요청하기">자세한 방법</a>
+          <a class="btn ghost" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#requesting-official-support">Step-by-step</a>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── 시작하기 ─── -->
     <section class="section start">
-      <h2 class="section-title"><span class="num">04</span>
+      <h2 class="section-title"><span class="num">05</span>
         <span lang="ko">3분이면 시작</span><span lang="en">Up in three minutes</span></h2>
       <ol class="steps">
         <li><b>1</b><span lang="ko">설치 파일을 받아 실행합니다.</span><span lang="en">Download and run the installer.</span></li>
@@ -239,7 +298,7 @@
 
     <!-- ─── 개발자 ─── -->
     <section id="dev" class="section">
-      <h2 class="section-title"><span class="num">05</span>
+      <h2 class="section-title"><span class="num">06</span>
         <span lang="ko">만든 사람</span><span lang="en">Who made it</span></h2>
       <div class="dev">
         <img class="dev-photo" src="assets/coldlapse.png" alt="Coldlapse" width="160" height="160" />

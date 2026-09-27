@@ -218,3 +218,24 @@ video.demo, .feature-media img { display: block; width: 100%; height: auto; back
   .spotlight { grid-template-columns: 1fr; }
   .cards.three { grid-template-columns: 1fr; }
 }
+
+/* ─── 지원하는 컨트롤러 ─── */
+.support .card ul { margin: 0 0 12px; padding-left: 18px; color: var(--text); }
+.support .card li { margin: 3px 0; }
+.support .card p { margin-bottom: 10px; }
+.tag { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.tag.ok { background: rgba(0, 200, 83, 0.14); color: #4ee38a; }
+.tag.manual { background: rgba(255, 176, 32, 0.14); color: var(--amber); }
+.tag.check { background: rgba(79, 224, 255, 0.12); color: var(--cyan); }
+.request { margin-top: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 4vw, 32px);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; }
+.request h3 { font-size: 20px; margin: 0 0 8px; }
+.request p { color: var(--muted); margin: 0 0 12px; }
+.request-steps { margin: 0 0 12px; padding-left: 20px; color: #c3c8d4; }
+.request-steps li { margin: 4px 0; }
+.request .fine { font-size: 13px; margin: 0; }
+.request .cta { flex-direction: column; align-items: stretch; }
+@media (max-width: 760px) {
+  .request { grid-template-columns: 1fr; }
+  .request .cta { flex-direction: row; }
+}
