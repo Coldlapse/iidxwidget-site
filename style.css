@@ -239,3 +239,11 @@ video.demo, .feature-media img { display: block; width: 100%; height: auto; back
   .request { grid-template-columns: 1fr; }
   .request .cta { flex-direction: row; }
 }
+
+/* ─── GitHub 실시간 숫자 ─── */
+.gh-stat b, .gh-meta b { font-variant-numeric: tabular-nums; }
+.btn .gh-stars { margin-left: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.gh-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.gh-meta a { color: var(--muted); }
+.gh-meta a:hover { color: var(--text); text-decoration: none; }
+.gh-meta b { color: var(--text); font-weight: 600; }

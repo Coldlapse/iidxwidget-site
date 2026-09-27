@@ -50,6 +50,51 @@
     block.addEventListener('focusout', event => { if (!block.contains(event.relatedTarget)) show(null); });
   });
 
+  // GitHub 실시간 숫자: 누적 다운로드(모든 릴리스의 설치 파일 .exe 다운로드 합), 스타, 기여자 수, 최신 버전.
+  // latest.yml·.blockmap은 앱의 업데이트 확인이 받아 가는 파일이라 다운로드 수에서 뺀다.
+  // 로그인 없는 GitHub API는 IP당 시간당 60회라 한 시간 동안 브라우저에 저장해 두고 다시 쓴다. 못 받으면 숫자를 숨긴 채 둔다.
+  (function githubStats() {
+    const REPO = 'https://api.github.com/repos/Coldlapse/IIDXwidget';
+    const CACHE_KEY = 'ghStats';
+    const CACHE_MS = 60 * 60 * 1000;
+    const show = stats => {
+      const locale = root.dataset.lang === 'en' ? 'en-US' : 'ko-KR';
+      let any = false;
+      document.querySelectorAll('[data-gh]').forEach(el => {
+        const value = stats[el.dataset.gh];
+        if (value === undefined || value === null) return;
+        el.querySelectorAll('[data-gh-value]').forEach(b => { b.textContent = typeof value === 'number' ? value.toLocaleString(locale) : value; });
+        el.hidden = false;
+        any = true;
+      });
+      const meta = document.querySelector('.gh-meta');
+      if (meta && any) meta.hidden = false;
+    };
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); } catch (e) {}
+    if (cached && Date.now() - cached.at < CACHE_MS) { show(cached.stats); return; }
+    const get = url => fetch(url, { headers: { Accept: 'application/vnd.github+json' } }).then(r => (r.ok ? r.json() : Promise.reject(r.status)));
+    Promise.allSettled([get(REPO), get(REPO + '/releases?per_page=100'), get(REPO + '/contributors?per_page=100')])
+      .then(([repo, releases, contributors]) => {
+        const stats = {};
+        if (repo.status === 'fulfilled') stats.stars = repo.value.stargazers_count;
+        if (releases.status === 'fulfilled' && Array.isArray(releases.value)) {
+          stats.downloads = releases.value.reduce((sum, rel) => sum + (rel.assets || [])
+            .filter(a => /\.exe$/i.test(a.name)).reduce((s, a) => s + (a.download_count || 0), 0), 0);
+          const latest = releases.value.find(rel => !rel.draft && !rel.prerelease);
+          if (latest) stats.version = latest.tag_name;
+        }
+        if (contributors.status === 'fulfilled' && Array.isArray(contributors.value)) stats.contributors = contributors.value.length;
+        if (!Object.keys(stats).length) return;
+        show(stats);
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), stats })); } catch (e) {}
+      });
+    // 언어를 바꾸면 숫자 형식(천 단위 구분)도 다시
+    document.querySelectorAll('[data-set-lang]').forEach(b => b.addEventListener('click', () => {
+      try { const c = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); if (c) show(c.stats); } catch (e) {}
+    }));
+  })();
+
   // 데모 영상: 화면에 보일 때만 재생 (움직임 줄이기 설정이면 자동 재생하지 않고 재생 버튼만)
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const videos = document.querySelectorAll('video.demo');
