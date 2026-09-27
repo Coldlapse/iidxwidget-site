@@ -13,6 +13,8 @@
 | `style.css` | 스타일 (위젯과 같은 어두운 계기판 느낌) |
 | `main.js` | 언어 전환, 데모 영상은 화면에 보일 때만 재생 (움직임 줄이기 설정이면 자동 재생 안 함) |
 | `assets/` | 데모 영상(mp4)·포스터(jpg)·스크린샷, 개발자 이미지 |
+| `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | 사이트 아이콘 (턴테이블 모양) |
+| `assets/og.png` | 링크 미리보기 이미지 1200×630 (디스코드·트위터). 위젯 디자인이 바뀌면 `combo.jpg`로 다시 그린다 |
 | `CNAME` | GitHub Pages 사용자 지정 도메인 (`iidxwidget.coldlapse.dev`) |
 | `.nojekyll` | Jekyll 처리 끄기 |
 
