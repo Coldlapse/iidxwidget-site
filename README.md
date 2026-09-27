@@ -52,6 +52,19 @@ GitHub Pages는 저장소 하나에 도메인 하나만 붙일 수 있어서, �
    - 동작: Dynamic, 식 `concat("https://iidxwidget.beatmania.app", http.request.uri.path)`, 상태 코드 301, 쿼리 문자열 유지
 3. `.dev`도 HTTPS만 되는 도메인이다. 프록시를 켜 두면 Cloudflare 인증서로 바로 HTTPS가 된다.
 
+### 4. 메인 페이지(coldlapse.dev)와 함께 쓰기
+`coldlapse.github.io`는 Coldlapse 계정의 Pages 사이트 전체가 함께 쓰는 접속 지점이다. 여러 도메인이 모두 이 주소를 가리켜도 GitHub가 **들어온 도메인**으로 저장소를 고르므로 서로 부딪히지 않는다.
+
+| 들어온 주소 | 보여주는 저장소 |
+|---|---|
+| `coldlapse.dev` | `Coldlapse/coldlapse.github.io` (메인 페이지, 그 저장소의 사용자 지정 도메인) |
+| `iidxwidget.beatmania.app` | `Coldlapse/iidxwidget-site` (이 저장소의 `CNAME`) |
+
+- 메인 페이지에 `coldlapse.dev`를 걸면, 자기 도메인이 없는 다른 Pages 저장소는 `coldlapse.dev/<저장소>/`로 열린다. 이 저장소는 자기 도메인이 있어서 `coldlapse.dev/iidxwidget-site/`로 들어와도 `iidxwidget.beatmania.app`으로 옮겨진다.
+- `coldlapse.dev`는 최상위 도메인이라 A 레코드 4개(`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`)나 이름 `@`의 CNAME(Cloudflare가 A처럼 처리)으로 연결한다.
+- GitHub 계정 Settings → Pages에서 `beatmania.app`, `coldlapse.dev` **도메인 인증**을 해 두면 다른 사람이 이 도메인을 자기 Pages에 걸어 가로채지 못한다.
+- `iidxwidget.coldlapse.dev` 이동은 Cloudflare 규칙이라 메인 페이지와 관계없다.
+
 ## 비용
 
 | 항목 | 비용 |
