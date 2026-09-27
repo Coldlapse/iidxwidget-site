@@ -2,7 +2,7 @@
 
 [IIDXwidget](https://github.com/Coldlapse/IIDXwidget) 소개·데모 페이지. GitHub Pages로 배포하는 정적 사이트입니다 (빌드 없음).
 
-- 주소: https://iidxwidget.beatmania.app (기본) / https://iidxwidget.polygon.dev (기본 주소로 이동)
+- 주소: https://iidxwidget.beatmania.app (기본) / https://iidxwidget.coldlapse.dev (기본 주소로 이동)
 - 한국어 / English (오른쪽 위 KO·EN, 처음에는 브라우저 언어를 따름)
 
 ## 구성
@@ -44,14 +44,13 @@
 - 처음에는 **DNS only(회색 구름)** 로 둔다. GitHub가 인증서를 발급한 뒤에는 프록시를 켜도 되지만, 켜려면 Cloudflare SSL 모드를 Full로.
 - `.app`은 HTTPS만 되는 도메인이라 인증서가 나오기 전(보통 몇 분~1시간)에는 접속되지 않는다.
 
-### 3. iidxwidget.polygon.dev → 기본 주소로 이동 (Vercel DNS)
-GitHub Pages는 저장소 하나에 도메인 하나만 붙일 수 있어서, 두 번째 주소는 이동만 시킨다.
-- 지금 `iidxwidget.polygon.dev`는 이미 Vercel로 연결되어 있다 (와일드카드 레코드로 보임). 다른 프로젝트로 가고 있지 않은지 먼저 확인.
-- 방법 A (권장): Vercel에 이동 전용 프로젝트를 하나 만들고 `iidxwidget.polygon.dev` 도메인을 붙인 뒤, `vercel.json`:
-  ```json
-  { "redirects": [{ "source": "/(.*)", "destination": "https://iidxwidget.beatmania.app/$1", "permanent": true }] }
-  ```
-- 방법 B: `iidxwidget.polygon.dev`를 GitHub Pages 쪽 두 번째 저장소(CNAME + 이동 페이지)로 연결.
+### 3. iidxwidget.coldlapse.dev → 기본 주소로 이동 (Cloudflare)
+GitHub Pages는 저장소 하나에 도메인 하나만 붙일 수 있어서, 두 번째 주소는 이동만 시킨다. coldlapse.dev도 beatmania.app과 같은 Cloudflare 계정이라 Cloudflare 안에서 끝난다.
+1. DNS: `AAAA` 레코드, 이름 `iidxwidget`, 값 `100::`, **프록시 켜기(주황 구름)**. 실제 서버 없이 Cloudflare가 요청을 받기 위한 자리표시 주소다.
+2. Rules → Redirect Rules → 새 규칙:
+   - 조건: Hostname equals `iidxwidget.coldlapse.dev`
+   - 동작: Dynamic, 식 `concat("https://iidxwidget.beatmania.app", http.request.uri.path)`, 상태 코드 301, 쿼리 문자열 유지
+3. `.dev`도 HTTPS만 되는 도메인이다. 프록시를 켜 두면 Cloudflare 인증서로 바로 HTTPS가 된다.
 
 ## 비용
 
@@ -60,8 +59,8 @@ GitHub Pages는 저장소 하나에 도메인 하나만 붙일 수 있어서, �
 | GitHub Pages 호스팅 (공개 저장소) | 무료 |
 | HTTPS 인증서 (GitHub Pages가 자동 발급) | 무료 |
 | Cloudflare DNS (beatmania.app) | 무료 |
-| Vercel Hobby, 이동 전용 프로젝트 (polygon.dev) | 무료 (비상업 용도) |
-| 도메인 | 이미 가진 도메인의 하위 주소라 추가 비용 없음 (기존 beatmania.app·polygon.dev 갱신비는 그대로) |
+| Cloudflare Redirect Rule (coldlapse.dev → beatmania.app) | 무료 (무료 요금제에 규칙 10개) |
+| 도메인 | 이미 가진 도메인의 하위 주소라 추가 비용 없음 (beatmania.app·coldlapse.dev 갱신비는 그대로, Cloudflare 등록은 원가 수준) |
 | **추가 비용 합계** | **0원** |
 
 트래픽: 페이지 한 번 전체 보기 약 1.5MB (영상은 화면에 보일 때만 받음). GitHub Pages의 권장 한도(월 100GB)는 대략 월 6만 번 전체 조회에 해당하고, 사이트 크기 한도(1GB)에 비해 지금 사이트는 약 1.5MB입니다.
