@@ -67,26 +67,21 @@
     <section id="why" class="section">
       <h2 class="section-title"><span class="num">01</span>
         <span lang="ko">왜 IIDXwidget인가</span><span lang="en">Why IIDXwidget</span></h2>
-      <div class="cards four">
+      <div class="cards three">
         <article class="card">
-          <h3><span lang="ko">주소 한 줄이면 끝</span><span lang="en">One URL and you're live</span></h3>
-          <p><span lang="ko">OBS 브라우저 소스에 주소만 넣으면 됩니다. 원컴도, 투컴도 됩니다. 처음 켜면 연결 방법을 차근차근 안내합니다.</span>
-             <span lang="en">Paste one address into an OBS browser source. Works on one PC or two. First launch walks you through the setup.</span></p>
+          <h3><span lang="ko">투컴 방송 지원</span><span lang="en">Two-PC streaming</span></h3>
+          <p><span lang="ko">게임 PC에서 앱을 켜고, 방송 PC의 OBS에 게임 PC 주소만 넣으면 됩니다. IP 찾는 법부터 방화벽 허용까지 앱 안의 연결 가이드가 차근차근 안내합니다.</span>
+             <span lang="en">Run the app on the game PC and put its address into OBS on the stream PC. The built-in connection guide walks you through finding the IP and allowing it through the firewall.</span></p>
         </article>
         <article class="card">
-          <h3><span lang="ko">앱과 방송이 같은 숫자</span><span lang="en">Same numbers everywhere</span></h3>
-          <p><span lang="ko">타건 수·업타임·릴리즈·KPS를 앱 본체가 계산해서 앱 창과 OBS에 똑같이 보냅니다. 앱을 다시 켜도 방송 화면이 알아서 다시 붙습니다.</span>
-             <span lang="en">Presses, uptime, release and KPS are computed once and sent to both the app and OBS. Restart the app and the stream reconnects by itself.</span></p>
+          <h3><span lang="ko">채터링 감지 지원</span><span lang="en">Chatter detection</span></h3>
+          <p><span lang="ko">스위치가 튀어서 생기는 이중 인식을 건반마다 셉니다. 유독 튀는 건반만 짚어 줘서 스위치 교체 시기를 가늠할 수 있습니다.</span>
+             <span lang="en">Counts double inputs from switch bounce on every key and points out the keys that stand out, so you know when a switch is wearing out.</span></p>
         </article>
         <article class="card">
-          <h3><span lang="ko">연습 도구이기도 합니다</span><span lang="en">A practice tool, too</span></h3>
-          <p><span lang="ko">릴리즈는 Rag 님 위젯과 같은 기준으로 계산하고, 채터링 감지로 스위치 상태까지 점검할 수 있습니다.</span>
-             <span lang="en">Release is measured with the same rules as Rag's widget, and chatter detection tells you how your switches are doing.</span></p>
-        </article>
-        <article class="card">
-          <h3><span lang="ko">무료, 오픈소스</span><span lang="en">Free and open source</span></h3>
-          <p><span lang="ko">MIT 라이선스로 코드가 모두 공개되어 있습니다. 키 입력은 인터넷으로 나가지 않습니다.</span>
-             <span lang="en">MIT licensed, every line public. Your key input never leaves your PC.</span></p>
+          <h3><span lang="ko">무료</span><span lang="en">Free</span></h3>
+          <p><span lang="ko">모든 기능을 무료로 씁니다. 결제도, 광고도, 가입도 없습니다.</span>
+             <span lang="en">Every feature is free. No payment, no ads, no sign-up.</span></p>
         </article>
       </div>
     </section>
@@ -108,9 +103,8 @@
         <li><b><span lang="ko">컨트롤러 상태가 궁금한 사람</span><span lang="en">Anyone worried about their switches</span></b>
           <span lang="ko">채터링 감지로 스위치 교체 시기를 가늠하세요.</span>
           <span lang="en">Chatter detection helps you tell when a switch is wearing out.</span></li>
-        <li><b><span lang="ko">키보드 플레이어</span><span lang="en">Keyboard players</span></b>
-          <span lang="ko">키보드로도 됩니다. 설정 화면에서 놀림은 좀 받습니다.</span>
-          <span lang="en">Keyboards work too. The settings screen may tease you a little.</span></li>
+        <li lang="ko"><b>키보드 플레이어</b>
+          개발자가 콘충이라 KB들을 놀릴 수도 있습니다.</li>
         <li><b><span lang="ko">beatmania.app 사용자</span><span lang="en">beatmania.app users</span></b>
           <span lang="ko">친 만큼 타건 기록을 서열표 사이트로 바로 보냅니다.</span>
           <span lang="en">Send your press counts straight to the rank-table site.</span></li>
@@ -122,25 +116,37 @@
       <h2 class="section-title"><span class="num">03</span>
         <span lang="ko">기능</span><span lang="en">Features</span></h2>
 
-      <article class="feature">
-        <div class="feature-media"><video class="demo" src="assets/play.mp4" poster="assets/play.jpg" muted loop playsinline preload="none"></video></div>
-        <div class="feature-text">
-          <h3><span lang="ko">실시간 입력 계기판</span><span lang="en">Live input dashboard</span></h3>
-          <p><span lang="ko">스크래치 회전과 방향, 건반 입력을 실시간으로 그립니다. 아래 계기판에는 이번 세션의 타건 수, 업타임, 평균 릴리즈, KPS가 흐릅니다. 건반 위 숫자는 건반마다의 평균 릴리즈입니다.</span>
-             <span lang="en">Turntable spin and direction plus every key press, drawn live. The dashboard shows this session's presses, uptime, average release and KPS; the number on each key is that key's average release.</span></p>
-          <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#-화면-구성">가이드: 화면 구성 →</a>
-          <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#-what-you-see">Guide: what you see →</a>
+      <!-- 한 장면에 세 기능. 오른쪽 설명에 마우스를 올리면(또는 누르면) 영상에서 그 영역을 강조한다.
+           data-spot: 영상(520×380) 안의 영역 "x,y,w,h" 여러 개를 ;로 구분 -->
+      <article class="spotlight">
+        <div class="spot-media">
+          <div class="spot-stage">
+            <video class="demo" src="assets/combo.mp4" poster="assets/combo.jpg" muted loop playsinline preload="none"></video>
+            <svg class="spot-mask" viewBox="0 0 520 380" preserveAspectRatio="none" aria-hidden="true"><path fill-rule="evenodd" d=""/></svg>
+          </div>
         </div>
-      </article>
-
-      <article class="feature reverse">
-        <div class="feature-media"><video class="demo" src="assets/gauge.mp4" poster="assets/gauge.jpg" muted loop playsinline preload="none"></video></div>
-        <div class="feature-text">
-          <h3><span lang="ko">KPS 스피드미터</span><span lang="en">KPS speedometer</span></h3>
-          <p><span lang="ko">KPS가 자동차 속도계처럼 올라갑니다. 빨간 영역에 들어서면 주황에서 빨강으로 달아오르고, 끝값에 닿으면 바늘이 살짝 떨립니다. IIDX / BMS ~★★ / BMS ★★~ 프리셋 중에 고르세요.</span>
-             <span lang="en">KPS climbs like a car speedometer. In the red zone it heats from orange to red, and at the limit it trembles a little. Presets for IIDX, BMS up to ★★ and BMS ★★ and up.</span></p>
-          <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#-화면-구성">가이드: KPS 스피드미터 →</a>
-          <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#-what-you-see">Guide: KPS speedometer →</a>
+        <div class="spot-list">
+          <div class="spot-item" tabindex="0" data-spot="20,55,480,230;28,285,254,78">
+            <h3><span lang="ko">실시간 입력 계기판</span><span lang="en">Live input dashboard</span></h3>
+            <p><span lang="ko">스크래치 회전과 방향, 건반 입력을 실시간으로 그리고, 아래 계기판에 이번 세션의 타건 수와 업타임이 흐릅니다.</span>
+               <span lang="en">Turntable spin and every key press, drawn live, with this session's presses and uptime on the dashboard.</span></p>
+            <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#-화면-구성">가이드: 화면 구성 →</a>
+            <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#-what-you-see">Guide: what you see →</a>
+          </div>
+          <div class="spot-item" tabindex="0" data-spot="381,285,111,78">
+            <h3><span lang="ko">KPS 스피드미터</span><span lang="en">KPS speedometer</span></h3>
+            <p><span lang="ko">KPS가 속도계처럼 올라가고, 빨간 영역에서는 주황에서 빨강으로 달아오르며 끝값에서 살짝 떨립니다. IIDX / BMS ~★★ / BMS ★★~ 프리셋.</span>
+               <span lang="en">KPS climbs like a speedometer, heats from orange to red in the red zone and trembles at the limit. Presets for IIDX, BMS up to ★★ and ★★ and up.</span></p>
+            <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#-화면-구성">가이드: KPS 스피드미터 →</a>
+            <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#-what-you-see">Guide: KPS speedometer →</a>
+          </div>
+          <div class="spot-item" tabindex="0" data-spot="265,100,200,140;282,285,99,78">
+            <h3><span lang="ko">릴리즈 · 롱노트</span><span lang="en">Release and long notes</span></h3>
+            <p><span lang="ko">건반 위 숫자는 건반별, 계기판은 전체 평균 릴리즈입니다. Rag 님 위젯과 같은 규칙으로 재고, 롱노트는 평균에서 빼며 누르고 있는 동안 따로 색을 칠합니다.</span>
+               <span lang="en">Per-key release above each key, overall average on the dashboard — same rules as Rag's widget. Long notes are left out and get their own color while held.</span></p>
+            <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/RELEASE.md">가이드: RELEASE 수치 →</a>
+            <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/RELEASE.en.md">Guide: release value →</a>
+          </div>
         </div>
       </article>
 
@@ -155,23 +161,12 @@
         </div>
       </article>
 
-      <article class="feature">
-        <div class="feature-media"><video class="demo" src="assets/ln.mp4" poster="assets/ln.jpg" muted loop playsinline preload="none"></video></div>
-        <div class="feature-text">
-          <h3><span lang="ko">릴리즈 · 롱노트</span><span lang="en">Release and long notes</span></h3>
-          <p><span lang="ko">누른 뒤 떼기까지의 시간을 Rag 님 위젯과 같은 규칙으로 잽니다. 롱노트는 평균에서 빼고, 롱노트로 누르고 있는 건반은 따로 색을 칠합니다.</span>
-             <span lang="en">Press-to-release time, measured with the same rules as Rag's widget. Long notes are left out of the average, and a key held as a long note gets its own color.</span></p>
-          <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/RELEASE.md">가이드: RELEASE 수치 →</a>
-          <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/RELEASE.en.md">Guide: release value →</a>
-        </div>
-      </article>
-
       <article class="feature reverse">
-        <div class="feature-media"><video class="demo" src="assets/themes.mp4" poster="assets/themes.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="feature-media"><video class="demo" src="assets/themes2.mp4" poster="assets/themes2.jpg" muted loop playsinline preload="none"></video></div>
         <div class="feature-text">
           <h3><span lang="ko">방송에 맞춰 꾸미기</span><span lang="en">Make it yours</span></h3>
-          <p><span lang="ko">배경, 건반, 입력, 글자, 롱노트 색을 바꾸고 배경을 투명하게 할 수 있습니다. 스크래치에는 원하는 이미지를 넣고, 회전 방향마다 다른 이미지도 됩니다. 바꾼 설정은 방송 화면에 바로 반영됩니다.</span>
-             <span lang="en">Change the background, key, active, text and long-note colors, or go transparent. Put your own image on the turntable — even a different one per spin direction. Changes show up on stream instantly.</span></p>
+          <p><span lang="ko">스크래치에 원하는 이미지를 넣고, 이미지에 맞춰 배경·건반·입력·글자·롱노트 색을 바꿉니다. <b>GIF 등 움직이는 이미지도 지원</b>하고, 회전 방향마다 다른 이미지도 됩니다. 바꾼 설정은 방송 화면에 바로 반영됩니다.</span>
+             <span lang="en">Put your own image on the turntable and match the background, key, active, text and long-note colors to it. <b>Animated images like GIFs work too</b>, and you can use a different image per spin direction. Changes show up on stream instantly.</span></p>
           <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#위젯-외관">가이드: 위젯 외관 →</a>
           <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#widget-appearance">Guide: widget appearance →</a>
         </div>

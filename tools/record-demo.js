@@ -1,10 +1,11 @@
 // 랜딩 페이지용 데모 녹화: 위젯에 가상 플레이 입력을 넣고 30fps 프레임을 PNG로 남긴다 (ffmpeg로 mp4 변환)
 // 숫자는 앱의 실제 통계 모듈(sessionManager)로 계산한다.
 // 사용 (앱 저장소 iidxwidget-app 폴더에서): node_modules/electron/dist/electron.exe <이 파일> <scenario>
-//   scenario: play | gauge | dp | ln | themes
+//   scenario: play | combo | dp | themes2 (그 밖에 gauge | ln | themes는 예전 장면)
 //   환경 변수 IIDXWIDGET_APP: 앱 폴더 (기본: 이 저장소 옆의 IIDXwidget/iidxwidget-app)
-//   결과: tools/out/<scenario>/0000.png ... → ffmpeg로 mp4 변환 (아래 주석 참고)
-//   ffmpeg -framerate 30 -i out/play/%04d.png -c:v libx264 -pix_fmt yuv420p -crf 24 -preset slow -movflags +faststart ../assets/play.mp4
+//   환경 변수 IIDXWIDGET_THEME_DIR: themes2의 스크래치 이미지가 있는 폴더 (기본: 이 저장소의 상위 폴더, 작업 공간)
+//   결과: tools/out/<scenario>/0000.png ... → ffmpeg로 mp4 변환:
+//   ffmpeg -framerate 30 -i out/combo/%04d.png -c:v libx264 -pix_fmt yuv420p -crf 24 -preset slow -movflags +faststart ../assets/combo.mp4
 const { app, BrowserWindow, ipcMain } = require('electron');
 const fs = require('fs');
 const path = require('path');
@@ -105,6 +106,19 @@ async function record(durationMs, action) {
   return frames.length;
 }
 
+const gifData = file => `data:image/${file.endsWith('.png') ? 'png' : 'gif'};base64,` + fs.readFileSync(file).toString('base64');
+const DEPLOY = process.env.IIDXWIDGET_THEME_DIR || path.resolve(__dirname, '../..');
+const lazy = fn => { let v; return () => (v ??= fn()); };
+const FERN = lazy(() => gifData(DEPLOY + '/pouting-frieren.gif'));
+const TOWER = lazy(() => gifData(DEPLOY + '/989db557c9bf931a105d804d3530b732b9e9f98ef1c3bc59982e9adaa6c5c17b4227d5a02f7da92d949594013b140b7401333d07b1c792e9abc257c9a0488c921278df00c8a06fbafd73dcb053e32c92976fe4bd27348edfa1cf8013e66fbf13.gif'));
+// 이미지에 어울리는 색: 페른(보라 머리) → 보라, 게임 건물(초록 바닥·금색·하늘색 빛) → 초록·금색
+const IMAGE_THEMES = [
+  { image: FERN, colors: { containerBackground: '#170f22', background: '#241634', accent: '#5e4280', fontColor: '#f1e6ff', activeColor: '#c58bff', lnColor: '#ffc9a8' } },
+  { image: TOWER, colors: { containerBackground: '#0a1710', background: '#10261a', accent: '#2d5e41', fontColor: '#eef6d8', activeColor: '#ffcf4a', lnColor: '#5fe3ff' } },
+  // 사진(검은 모자, 베이지 벽) → 어두운 갈색·베이지
+  { image: lazy(() => gifData(DEPLOY + '/엄준식.png')), colors: { containerBackground: '#141210', background: '#221e1a', accent: '#4f4740', fontColor: '#f2eadc', activeColor: '#e9dcc4', lnColor: '#d7a45f' } }
+];
+
 const THEMES = [
   { containerBackground: '#000000', background: '#000000', accent: '#444444', fontColor: '#cccccc', activeColor: '#ffffff', lnColor: '#ffb74d' },
   { containerBackground: '#1b1030', background: '#2b1850', accent: '#5a3d8a', fontColor: '#f0e6ff', activeColor: '#ff66cc', lnColor: '#66ffcc' },
@@ -134,6 +148,30 @@ app.whenReady().then(async () => {
       frames = await record(9000, async () => { play({ side: 1, kps: 8, durationMs: 9000 }); play({ side: 2, kps: 8, durationMs: 9000, scratchEvery: 2300 }); });
     } else if (SCENARIO === 'ln') {
       frames = await record(8000, async () => { play({ kps: 7, durationMs: 8000, longNotes: true, scratchEvery: 99999 }); });
+    } else if (SCENARIO === 'combo') {
+      // 입력 계기판·KPS 스피드미터·릴리즈·롱노트를 한 장면에: KPS를 끝값까지 올렸다 내리고 롱노트를 섞는다
+      frames = await record(12500, async () => {
+        (async () => {
+          for (const k of [7, 10, 16, 24, 32, 42, 46, 46, 28, 12]) await play({ kps: k, durationMs: 1200, longNotes: true, scratchEvery: 1600 });
+        })();
+      });
+    } else if (SCENARIO === 'themes2') {
+      // 스크래치 이미지(움직이는 GIF)와 그에 맞춘 색 세트
+      const apply = theme => {
+        settings.widget.colors = theme.colors;
+        settings.widget.discImagePath = theme.image ? theme.image() : null;
+        settings.widget.discImageMode = 'single';
+        win.webContents.send('settings-updated');
+      };
+      apply(IMAGE_THEMES[0]);
+      await sleep(800);
+      frames = await record(10500, async () => {
+        play({ kps: 9, durationMs: 10500 });
+        (async () => {
+          await sleep(3500); apply(IMAGE_THEMES[1]);
+          await sleep(3500); apply(IMAGE_THEMES[2]);
+        })();
+      });
     } else if (SCENARIO === 'themes') {
       frames = await record(10000, async () => {
         play({ kps: 9, durationMs: 10000 });
