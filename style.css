@@ -240,10 +240,10 @@ video.demo, .feature-media img { display: block; width: 100%; height: auto; back
   .request .cta { flex-direction: row; }
 }
 
-/* ─── GitHub 실시간 숫자 ─── */
-.gh-stat b, .gh-meta b { font-variant-numeric: tabular-nums; }
-.btn .gh-stars { margin-left: 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
-.gh-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 0; font-size: 14px; color: var(--muted); }
-.gh-meta a { color: var(--muted); }
-.gh-meta a:hover { color: var(--text); text-decoration: none; }
-.gh-meta b { color: var(--text); font-weight: 600; }
+/* ─── GitHub 실시간 숫자 (버튼 아래 한 줄, 링크 없음) ─── */
+.gh-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.gh-meta > span { display: inline-flex; align-items: center; gap: 5px; }
+.gh-meta > span:not([hidden]) ~ span:not([hidden])::before { content: '·'; margin: 0 10px; color: #3a4052; }
+.gh-meta b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gh-icon { width: 14px; height: 14px; flex-shrink: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
