@@ -50,7 +50,7 @@
     block.addEventListener('focusout', event => { if (!block.contains(event.relatedTarget)) show(null); });
   });
 
-  // GitHub 실시간 숫자: 누적 다운로드(모든 릴리스의 설치 파일 .exe 다운로드 합), 스타, 기여자 수, 최신 버전.
+  // GitHub 실시간 숫자: 누적 다운로드(모든 릴리스의 설치 파일 .exe·.AppImage 다운로드 합), 스타, 기여자 수, 최신 버전.
   // latest.yml·.blockmap은 앱의 업데이트 확인이 받아 가는 파일이라 다운로드 수에서 뺀다.
   // 로그인 없는 GitHub API는 IP당 시간당 60회라 한 시간 동안 브라우저에 저장해 두고 다시 쓴다. 못 받으면 숫자를 숨긴 채 둔다.
   (function githubStats() {
@@ -80,7 +80,7 @@
         if (repo.status === 'fulfilled') stats.stars = repo.value.stargazers_count;
         if (releases.status === 'fulfilled' && Array.isArray(releases.value)) {
           stats.downloads = releases.value.reduce((sum, rel) => sum + (rel.assets || [])
-            .filter(a => /\.exe$/i.test(a.name)).reduce((s, a) => s + (a.download_count || 0), 0), 0);
+            .filter(a => /\.(exe|AppImage)$/i.test(a.name)).reduce((s, a) => s + (a.download_count || 0), 0), 0);
           const latest = releases.value.find(rel => !rel.draft && !rel.prerelease);
           if (latest) stats.version = latest.tag_name;
         }
