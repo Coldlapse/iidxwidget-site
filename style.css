@@ -88,6 +88,9 @@ h1 em {
 }
 .btn:hover { text-decoration: none; }
 .btn small { font-weight: 500; font-size: 12px; opacity: 0.7; }
+/* 다운로드 버튼의 운영체제 아이콘 (Windows, 리눅스) */
+.os-icons { display: inline-flex; align-items: center; gap: 6px; margin-left: 2px; opacity: 0.85; }
+.os-icons svg { width: 18px; height: 18px; }
 .btn.primary { background: linear-gradient(135deg, var(--amber), var(--hot)); color: #120a04; border: 0; box-shadow: 0 10px 30px rgba(255, 90, 40, 0.25); }
 .btn.primary:hover { filter: brightness(1.06); }
 .btn.ghost:hover { border-color: #3a4052; background: var(--panel); }
@@ -142,6 +145,18 @@ video.demo, .feature-media img { display: block; width: 100%; height: auto; back
 .mini h3 { font-size: 16px; margin: 16px 18px 6px; }
 .mini p { color: var(--muted); font-size: 14px; margin: 0 18px 12px; flex: 1; }
 .mini .more { margin: 0 18px 18px; font-size: 14px; }
+/* 사진 대신 아이콘을 쓰는 카드 (리눅스) */
+.mini-icon { aspect-ratio: 4 / 3; display: grid; place-items: center; border-bottom: 1px solid var(--line); background: radial-gradient(80% 80% at 50% 40%, rgba(79, 224, 255, 0.10), transparent 70%), var(--panel-2); }
+.mini-icon svg { width: 34%; height: auto; aspect-ratio: 1; color: var(--text); }
+/* 줄 전체를 쓰는 가로 카드: 왼쪽 아이콘, 오른쪽 설명 (좁은 화면에서는 세로) */
+.mini.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 200px 1fr; grid-template-rows: auto 1fr auto; }
+.mini.wide .mini-icon { grid-row: 1 / 4; aspect-ratio: auto; min-height: 150px; border-bottom: 0; border-right: 1px solid var(--line); }
+.mini.wide .mini-icon svg { width: 76px; }
+.mini.wide h3 { margin-top: 20px; }
+@media (max-width: 640px) {
+  .mini.wide { grid-template-columns: 1fr; }
+  .mini.wide .mini-icon { grid-row: auto; border-right: 0; border-bottom: 1px solid var(--line); min-height: 120px; }
+}
 
 /* ─── 시작하기 ─── */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -152,6 +167,20 @@ video.demo, .feature-media img { display: block; width: 100%; height: auto; back
 .dev { display: flex; gap: 32px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 4vw, 36px); }
 .dev-photo { width: 160px; height: 160px; object-fit: contain; border-radius: 20px; background: var(--panel-2); flex-shrink: 0; }
 .dev-body h3 { font-family: var(--display); font-size: 28px; margin: 0 0 10px; }
+/* 만든 사람: coldlapse.dev처럼 서리 그라데이션 이름과 반짝이, 카드에 옅은 푸른빛 */
+.dev { background-image: radial-gradient(90% 90% at 0% 0%, rgba(58, 120, 255, 0.12), rgba(159, 231, 255, 0.03) 45%, transparent 70%); border-color: rgba(159, 231, 255, 0.16); }
+.dev-photo { box-shadow: 0 0 0 1px rgba(159, 231, 255, 0.22); }
+.dev-body h3.dev-name {
+  position: relative; display: inline-block; margin-left: 0.2em;
+  font-weight: 700; font-size: 32px; letter-spacing: 0.04em; line-height: 1.1;
+  background: linear-gradient(180deg, #ffffff 0%, #9fe7ff 38%, #3a78ff 72%, #bfeeff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.dev-name .spark { position: absolute; color: #8fb8ff; }
+.dev-name .s1 { width: 0.36em; height: 0.36em; left: -0.28em; top: -0.12em; }
+.dev-name .s2 { width: 0.2em; height: 0.2em; right: -0.3em; top: 0.4em; opacity: 0.7; }
+.dev-links a.home { border-color: rgba(159, 231, 255, 0.35); background: linear-gradient(180deg, rgba(159, 231, 255, 0.08), rgba(58, 120, 255, 0.08)); color: #bfeeff; }
+.dev-links a.home:hover { border-color: rgba(159, 231, 255, 0.6); }
 .dev-body h3 small { font-size: 16px; color: var(--muted); margin-left: 6px; }
 .dev-body p { color: #c3c8d4; margin: 0 0 16px; }
 .dev-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }

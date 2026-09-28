@@ -32,6 +32,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.6 10.4 4.5v7H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.4v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></symbol>
+    <!-- 펭귄(리눅스): 몸통 실루엣, 배와 눈은 뚫어서 배경색이 보이게 -->
+    <symbol id="i-linux" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 1.8c-2.3 0-3.8 1.9-3.8 4.5 0 1.1.2 2 .1 2.9-.1 1-1.3 2.3-2.3 4-1 1.8-1.4 3.6-.7 5-.6.3-1.3.9-1.1 1.8.3 1 1.7 1 2.7 1.2 1 .3 1.9 1.2 3 .9.8-.2 1.3-.9 1.4-1.5h1.4c.1.6.6 1.3 1.4 1.5 1.1.3 2-.6 3-.9 1-.2 2.4-.2 2.7-1.2.2-.9-.5-1.5-1.1-1.8.7-1.4.3-3.2-.7-5-1-1.7-2.2-3-2.3-4-.1-.9.1-1.8.1-2.9 0-2.6-1.5-4.5-3.8-4.5zM12 9.6c-2.1 0-3.4 2.4-3.4 5.1 0 2.5 1.4 4.1 3.4 4.1s3.4-1.6 3.4-4.1c0-2.7-1.3-5.1-3.4-5.1zM10.6 4.9a.8.9 0 1 0 0 1.8.8.9 0 1 0 0-1.8zM13.4 4.9a.8.9 0 1 0 0 1.8.8.9 0 1 0 0-1.8z"/></symbol>
+    <symbol id="spark" viewBox="0 0 32 32"><path fill="currentColor" d="M16 0C17 11 21 15 32 16 21 17 17 21 16 32 15 21 11 17 0 16 11 15 15 11 16 0Z"/></symbol>
+  </svg>
   <header class="topbar">
     <a class="brand" href="#top">IIDX<span>widget</span></a>
     <nav class="nav">
@@ -63,7 +69,7 @@
         <div class="cta">
           <a class="btn primary" href="https://github.com/Coldlapse/IIDXwidget/releases/latest">
             <span lang="ko">무료 다운로드</span><span lang="en">Download free</span>
-            <small><span lang="ko">Windows · 리눅스(실험적)</span><span lang="en">Windows · Linux (experimental)</span></small>
+            <span class="os-icons" title="Windows · Linux (experimental)"><svg aria-hidden="true"><use href="#i-windows"/></svg><svg aria-hidden="true"><use href="#i-linux"/></svg><span class="sr-only">Windows, Linux (experimental)</span></span>
           </a>
           <a class="btn ghost" href="https://github.com/Coldlapse/IIDXwidget">GitHub</a>
         </div>
@@ -241,6 +247,14 @@
           <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget#-문제-해결">문제 해결 →</a>
           <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/CONNECTION.en.md#-when-it-doesnt-work">Troubleshooting →</a>
         </article>
+        <article class="mini wide">
+          <div class="mini-icon" aria-hidden="true"><svg class="linux"><use href="#i-linux"/></svg></div>
+          <h3><span lang="ko">리눅스도 됩니다 (실험적)</span><span lang="en">Linux too (experimental)</span></h3>
+          <p><span lang="ko">Windows 설치 파일과 함께 리눅스용 AppImage를 배포합니다. 자동 업데이트도 됩니다. 컨트롤러 입력은 아직 리눅스 실제 기기로 확인 중이라 실험적 지원이고, 키보드 모드는 X11 세션에서만 동작합니다.</span>
+             <span lang="en">An AppImage ships alongside the Windows installer, with auto-update. Controller input is still being confirmed on real Linux hardware, so support is experimental; keyboard mode works only in an X11 session.</span></p>
+          <a class="more" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.md#-리눅스-실험적-지원">리눅스 안내 →</a>
+          <a class="more" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/USAGE.en.md#-linux-experimental">Linux notes →</a>
+        </article>
       </div>
     </section>
 
@@ -315,7 +329,7 @@
         <li><b>3</b><span lang="ko">설정에서 컨트롤러를 고르면 끝.</span><span lang="en">Pick your controller in Settings. Done.</span></li>
       </ol>
       <div class="cta center">
-        <a class="btn primary" href="https://github.com/Coldlapse/IIDXwidget/releases/latest"><span lang="ko">무료 다운로드</span><span lang="en">Download free</span><small><span lang="ko">Windows · 리눅스(실험적)</span><span lang="en">Windows · Linux (experimental)</span></small></a>
+        <a class="btn primary" href="https://github.com/Coldlapse/IIDXwidget/releases/latest"><span lang="ko">무료 다운로드</span><span lang="en">Download free</span><span class="os-icons" title="Windows · Linux (experimental)"><svg aria-hidden="true"><use href="#i-windows"/></svg><svg aria-hidden="true"><use href="#i-linux"/></svg><span class="sr-only">Windows, Linux (experimental)</span></span></a>
         <a class="btn ghost" lang="ko" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/CONNECTION.md">처음이라면: 연결 가이드</a>
         <a class="btn ghost" lang="en" href="https://github.com/Coldlapse/IIDXwidget/blob/main/GUIDE/CONNECTION.en.md">First time? Connection guide</a>
       </div>
@@ -328,7 +342,7 @@
       <div class="dev">
         <img class="dev-photo" src="assets/coldlapse.png" alt="Coldlapse" width="160" height="160" />
         <div class="dev-body">
-          <h3>Coldlapse</h3>
+          <h3 class="dev-name"><svg class="spark s1" aria-hidden="true"><use href="#spark"/></svg>Coldlapse<svg class="spark s2" aria-hidden="true"><use href="#spark"/></svg></h3>
           <p lang="ko">2022년에 IIDX와 BMS를 시작한 플레이어입니다. IIDX 인피니타스를 위한 서열표 사이트가 없다는 점에 착안해 <a href="https://beatmania.app">beatmania.app</a>을 만들어 운영하고 있고, IIDXwidget도 그 연장선에서 개발했습니다. 방송하며 직접 쓰는 도구를 만듭니다.</p>
           <p lang="en">A player who started IIDX and BMS in 2022. Noticing that INFINITAS had no rank-table site of its own, Coldlapse built and runs <a href="https://beatmania.app">beatmania.app</a>. IIDXwidget grew out of the same work: tools made for real use on stream.</p>
           <div class="dev-links">
@@ -336,7 +350,7 @@
             <a href="https://discord.gg/RxjwbvWa8D">Discord</a>
             <a href="https://boku.tachi.ac/u/Sadang">IR Profile</a>
             <a href="https://github.com/Coldlapse">GitHub</a>
-            <a href="https://coldlapse.dev/">coldlapse.dev</a>
+            <a class="home" href="https://coldlapse.dev/">coldlapse.dev</a>
             <a class="coffee" href="https://buymeacoffee.com/sadang">Buy me a coffee</a>
           </div>
           <p class="contributors">
